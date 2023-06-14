@@ -35,7 +35,7 @@ function decode(array,inkey){
     var split = inkey.split("")
     for(x of array){
         var num = BigInt(parseInt(x,36))
-        returnvalue +=(String.fromCharCode(Number(num%(BigInt(key)*BigInt(65536)))))
+        returnvalue +=(String.fromCharCode(Number(BigInt(num)%(BigInt(key)*BigInt(65536)))))
     }
     return returnvalue
 }
