@@ -17,7 +17,7 @@
     </body>
     <script>
 var aOU = 65535 //amount of unicodes
-var allUnicodes = "";for(i=0;i<=aOU;i++){aOU += String.fromCharCode(i)}
+var allUnicodes = "";for(i=0;i<=aOU;i++){allUnicodes += String.fromCharCode(i)}
 function encode(text,keyText){
     var length = keyText.length
     var key = parseInt(keyText,36)
