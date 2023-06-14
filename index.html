@@ -24,7 +24,7 @@ function encode(text,keyText){
     letters = text.split("")
     var encoded = []
     for(i=0;i<text.length;i++){
-        encoded[encoded.length]=  BigInt(letters[i].charCodeAt(0)+Math.floor(Math.random()*65536)*key).toString("36")
+        encoded[encoded.length]=  BigInt(letters[i].charCodeAt(0)+Math.floor(Math.random()*65536)*key*65536).toString("36")
     }
     return encoded
 }
@@ -35,7 +35,7 @@ function decode(array,inkey){
     var split = inkey.split("")
     for(x of array){
         var num = BigInt(parseInt(x,36))
-        returnvalue +=(String.fromCharCode(Number(num%BigInt(key))))
+        returnvalue +=(String.fromCharCode(Number(num%(BigInt(key)*BigInt(65536)))))
     }
     return returnvalue
 }
