@@ -1,0 +1,49 @@
+<html>
+<style>
+
+</style>
+    <body>
+        Encode
+        <input id = en type="text" placeholder="text here">
+        <input id = enkey type="text" placeholder="key here">
+        <input id = enout type="text" placeholder="output">
+        <input id = encoder type="button" value="encode">
+        <br>
+        decode
+        <input id = de type="text" placeholder="encode here">
+        <input id = dekey type="text" placeholder="key here">
+        <input id = deout type="text" placeholder="output">
+        <input id = decoder type="button" value="decode">
+    </body>
+    <script>
+var aOU = 65535 //amount of unicodes
+var allUnicodes = "";for(i=0;i<=aOU;i++){aOU += String.fromCharCode(i)}
+function encode(text,keyText){
+    var length = keyText.length
+    var key = parseInt(keyText,36)
+    letters = text.split("")
+    var encoded = []
+    for(i=0;i<text.length;i++){
+        encoded[encoded.length]=  BigInt(letters[i].charCodeAt(0)+Math.floor(Math.random()*65536)*key).toString("36")
+    }
+    return encoded
+}
+function decode(array,inkey){
+    returnvalue = ""
+    var length = inkey.length
+    var key = parseInt(inkey,36)
+    var split = inkey.split("")
+    for(x of array){
+        var num = BigInt(parseInt(x,36))
+        returnvalue +=(String.fromCharCode(Number(num%BigInt(key))))
+    }
+    return returnvalue
+}
+encoder.onclick = function(){
+    enout.value = encode(en.value,enkey.value)
+}
+decoder.onclick = function(){
+    deout.value = decode(de.value.split(","),dekey.value)
+}
+    </script>
+</html>
